@@ -54,7 +54,7 @@
         <div class="items-center rounded-lg shadow bg-gray-50 sm:flex">
           <div class="p-5">
             <h3 class="text-xl font-bold tracking-tight text-gray-900">
-              <a href="#">Chalvaria Tempoh</a>
+              <a href="https://instagram.com/chalvaria">Chalvaria Tempoh</a>
             </h3>
             <span class="text-gray-500">Scrum Master</span>
             <p class="mt-3 mb-4 font-light text-gray-500">Mahasiswa SI, Universitas Sam Ratulangi Angkatan 2021</p>
@@ -63,7 +63,7 @@
         <div class="items-center rounded-lg shadow bg-gray-50 sm:flex">
           <div class="p-5">
             <h3 class="text-xl font-bold tracking-tight text-gray-900">
-              <a href="#">Gloria Djuangalenge</a>
+              <a href="https://instagram.com/gloriaeuniche">Gloria Djuangalenge</a>
             </h3>
             <span class="text-gray-500">UI/UX Designer</span>
             <p class="mt-3 mb-4 font-light text-gray-500">Mahasiswa SI, Universitas Sam Ratulangi Angkatan 2021</p>
@@ -72,7 +72,7 @@
         <div class="items-center rounded-lg shadow bg-gray-50 sm:flex">
           <div class="p-5">
             <h3 class="text-xl font-bold tracking-tight text-gray-900">
-              <a href="#">Vallerie B. Sepang</a>
+              <a href="https://instagram.com/valeriebritania">Vallerie B. Sepang</a>
             </h3>
             <span class="text-gray-500">Web Developer</span>
             <p class="mt-3 mb-4 font-light text-gray-500">Mahasiswa SI, Universitas Sam Ratulangi Angkatan 2021</p>
@@ -81,7 +81,7 @@
         <div class="items-center rounded-lg shadow bg-gray-50 sm:flex">
           <div class="p-5">
             <h3 class="text-xl font-bold tracking-tight text-gray-900">
-              <a href="#">Giveanna Terok</a>
+              <a href="https://instagram.com/givegr_terok">Giveanna Terok</a>
             </h3>
             <span class="text-gray-500">Web Developer</span>
             <p class="mt-3 mb-4 font-light text-gray-500">Mahasiswa SI, Universitas Sam Ratulangi Angkatan 2021</p>
@@ -90,7 +90,7 @@
         <div class="items-center rounded-lg shadow bg-gray-50 sm:flex">
           <div class="p-5">
             <h3 class="text-xl font-bold tracking-tight text-gray-900">
-              <a href="#">Elisabet Lambiju</a>
+              <a href="https://instagram.com/elisnvntka">Elisabet Lambiju</a>
             </h3>
             <span class="text-gray-500">Data Engineer</span>
             <p class="mt-3 mb-4 font-light text-gray-500">Mahasiswa SI, Universitas Sam Ratulangi Angkatan 2021</p>
