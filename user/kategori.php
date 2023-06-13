@@ -1,6 +1,21 @@
 <?php
 include('config.php'); // file koneksi ke database
+
+if (isset($_GET['nama_kategori'])) {
+    $nama_kategori = $_GET['nama_kategori'];
+    $kategori_obat = $nama_kategori; // Assign the value to the variable
+
+
+    // Delete the product from the database
+    $query = "SELECT * FROM detail_obat
+            INNER JOIN kategori_obat ON detail_obat.kategori_obat =
+            kategori_obat.nama_kategori
+            WHERE kategori_obat = '$nama_kategori';
+            ";
+    $result = mysqli_query($mysqli, $query);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +32,7 @@ include('config.php'); // file koneksi ke database
 
 <body>
 
-    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center">
                 <img src="/apotech/assets/img/logo_transparan.png" class="h-8 mr-3" alt="Apotech">
@@ -55,43 +70,12 @@ include('config.php'); // file koneksi ke database
         </div>
     </nav>
 
-    <section class="m-10 mt-20">
-    <h2 class="text-center pb-8 text-2xl font-bold">Kategori</h2>
-    <div class="flex grid lg:grid-cols-5 gap-4 md:grid-cols-4 sm:grid-cols-2">
-        <?php
-        $query = "SELECT * FROM kategori_obat ORDER BY nama_kategori ASC";
-        $result = mysqli_query($mysqli, $query);
-        if ($result->num_rows > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $kd_kategori = $row['kd_kategori'];
-                $nama_kategori = $row['nama_kategori'];
-        ?>
-                <a class="m-1 h-full flex max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:bg-neutral-100 dark:bg-gray-800  dark:border-gray-700" href="kategori.php?nama_kategori=<?php echo $nama_kategori; ?>">
-                    <div class="flex pl-3">
-                        <img class="m-3 pb-1 flex object-contain object-left" src="/apotech/assets/img/img_obat.png" alt="kategori-1" />
-                        <h5 class="text-xl flex pt-6 pb-3 font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $nama_kategori ?></h5>
-                    </div>
-                </a>
-            <?php
-            }
-        } else {
-            ?>
-            <tr>
-                <td colspan="12" class="px-6 py-4 text-gray-500">Tidak ada Data Kategori.</td>
-            </tr>
-        <?php
-        }
-        ?>
-    </div>
-</section>
-
-
     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
 
     <section class="m-10 mt-20">
         <div class="flex grid lg:grid-cols-5 gap-4 md:grid-cols-4 sm:grid-cols-2">
             <?php
-            $query = "SELECT * FROM detail_obat ORDER BY kategori_obat ASC";
+            $query = "SELECT * FROM detail_obat WHERE kategori_obat=$kategori_obat ORDER BY kategori_obat ASC";
             $result = mysqli_query($mysqli, $query);
             if ($result->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -178,9 +162,9 @@ include('config.php'); // file koneksi ke database
                                                 <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                                 </svg>
-                                                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Tambah produk ini ke keranjang?</h3>
-                                                <a data-modal-hide="<?php echo 'popup-modal-' . $kd_obat; ?>" type="button" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" href="tambah.php">
-                                                    Tambah
+                                                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Anda harus login dahulu untuk melakukan transaksi</h3>
+                                                <a data-modal-hide="<?php echo 'popup-modal-' . $kd_obat; ?>" type="button" class="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" href="login.php">
+                                                    Login
                                                 </a>
                                                 <button data-modal-hide="<?php echo 'popup-modal-' . $kd_obat; ?>" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 text-center">Batal</button>
                                             </div>
@@ -205,49 +189,6 @@ include('config.php'); // file koneksi ke database
 
     </section>
 
-    <footer class="bg-slate-50 dark:bg-gray-900">
-        <div class="mx-auto w-full max-w-screen-xl p-20 py-6 lg:py-8">
-            <div class="md:flex md:justify-between">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="flex items-center">
-                        <img src="assets/img/logo.png" class="h-8 mr-3" alt="Apotech" />
-                        <span class="self-center text-2xl font-bold text-green-500 whitespace-nowrap dark:text-white">Apotech</span>
-                    </a>
-                </div>
-                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Tautan</h2>
-                        <ul class="text-gray-600 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="admin/login.php" class="hover:underline">Apotech Admin</a>
-                            </li>
-                            <li class="mb-4">
-                                <a href="team.php" class="hover:underline">Tim Kami</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Hubungi</h2>
-                        <ul class="text-gray-600 dark:text-gray-400 font-medium">
-                            <li class="mb-4">
-                                <a href="#" class="hover:underline ">012345678</a>
-                            </li>
-                            <li>
-                                <a href="#" class="hover:underline">Manado, Indonesia</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="#" class="hover:underline">Apotech™</a>. Kelompok 5 RPL Kelas A.
-                </span>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
 
 </html>
